@@ -31,7 +31,10 @@ export function ChainModal({ onClose, open }: ChainModalProps) {
   const titleId = 'rk_chain_modal_title';
   const mobile = isMobile();
   const rainbowkitChainsById = useRainbowKitChainsById();
-  const unsupportedChain = activeChain?.unsupported ?? false;
+  const unsupportedChain =
+    (activeChain?.unsupported ||
+      rainbowkitChainsById[activeChain?.id ?? -1]?.skipFromSwitch) ??
+    false;
   const chainIconSize = mobile ? '36' : '28';
 
   const stopSwitching = useCallback(() => {
@@ -111,6 +114,11 @@ export function ChainModal({ onClose, open }: ChainModalProps) {
                 const chainIconSize: BoxProps['width'] = mobile ? '36' : '28';
                 const chainIconUrl = rainbowKitChain?.iconUrl;
                 const chainIconBackground = rainbowKitChain?.iconBackground;
+                const skipFromSwitch = rainbowKitChain?.skipFromSwitch;
+
+                if (skipFromSwitch) {
+                  return <></>;
+                }
 
                 return (
                   <Fragment key={chain.id}>

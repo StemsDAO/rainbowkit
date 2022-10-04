@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rainbow-me/rainbowkit.git"
+    "url": "git+https://github.com/StemsDAO/rainbowkit.git"
   },
   "license": "MIT",
   "devDependencies": {
